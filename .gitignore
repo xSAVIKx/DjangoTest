@@ -1,0 +1,18 @@
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+
+# SQLite db
+*.sqlite*
+
+# .pyc files
+*.pyc
+
+# PyCharm project info
+.idea
+
+# temporary files
+*~
