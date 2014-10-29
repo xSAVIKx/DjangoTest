@@ -1,0 +1,22 @@
+[
+    {
+        "fields": {
+            "first_name": "Iurii",
+            "middle_name": "Oleksandrovich",
+            "student_card_id": "221f521a169441cdb689b28883eccc36",
+            "birthday_date": "1993-08-23",
+            "group": 1,
+            "surname": "Sergiichuk"
+        },
+        "model": "students.student",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "praepostor": 1,
+            "title": "Test group"
+        },
+        "model": "students.group",
+        "pk": 1
+    }
+]
