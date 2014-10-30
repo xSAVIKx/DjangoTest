@@ -1,0 +1,7 @@
+{% if messages %}
+    <div class="container theme-showcase" role="messages">
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}"><strong>{{ message | capfirst }}</strong></div>
+        {% endfor %}
+    </div>
+{% endif %}

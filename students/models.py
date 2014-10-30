@@ -10,7 +10,7 @@ class Student(models.Model):
     surname = models.CharField(max_length=32)
     middle_name = models.CharField(max_length=32, blank=True)
 
-    birthday_date = models.DateField(blank=True)
+    birthday_date = models.DateField(blank=True, null=True)
 
     student_card_id = UUIDField(auto=True)
     group = models.ForeignKey('Group', related_name='groups')
@@ -33,7 +33,7 @@ class Group(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('group_detail', kwargs={'group_title': str(self.title)})
+        return reverse('group_detail', kwargs={'group_id': str(self.id)})
 
     class Meta:
         ordering = ['title']

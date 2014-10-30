@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="Django test task application">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+    {% block extra_meta %}{% endblock %}
+    {% block style %}
+        <link rel="stylesheet" href="{% static 'students/css/bootstrap.min.css' %}">
+
+        <link rel="stylesheet" href="{% static 'students/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'students/css/main.css' %}">
+    {% endblock style %}
+    {% block extra_style %}{% endblock %}
+
+    <script src="{% static 'students/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+</head>
+<body>
+<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+{% block header %}
+    {% include 'students/parts/header.html' %}
+{% endblock %}
+{% block body %}
+    {% block messages %}
+        {% include 'students/parts/messages.html' %}
+    {% endblock %}
+    {% block container %}{% endblock %}
+{% endblock body %}
+{% block footer %}
+    {% include 'students/parts/footer.html' %}
+{% endblock %}
+<!-- /container -->
+{% block script %}
+    <script src="{% static 'students/js/vendor/jquery-1.11.1.min.js' %}"></script>
+
+    <script src="{% static 'students/js/vendor/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'students/js/plugins.js' %}"></script>
+    <script src="{% static 'students/js/main.js' %}"></script>
+{% endblock script %}
+{% block extra_script %}{% endblock %}
+</body>
+</html>
