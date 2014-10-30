@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% load widget_tweaks %}
+<link rel="stylesheet" href="{% static 'students/css/bootstrap-datetimepicker.min.css' %}">
+<form action="{{ form_action }}" class="form-horizontal col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-3"
+      role="form" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="form-group">
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ">
+                {{ field.label_tag }}
+                {{ field|add_class:"form-control" }}
+            </div>
+        </div>
+    {% endfor %}
+    <div class="form-group">
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-8 ">
+            <button type="submit" class="btn btn-block btn-success">Submit</button>
+        </div>
+    </div>
+</form>

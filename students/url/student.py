@@ -5,10 +5,10 @@ from students.views import StudentCreateView, StudentDetailView, StudentUpdateVi
 
 urlpatterns = patterns('',
                        url('^new/$', StudentCreateView.as_view(), name="create_student"),
-                       url('^(?P<student_card_id>[0-9a-fA-F]{32})/$', StudentDetailView.as_view(),
+                       url('^(?P<student_id>\d+)/$', StudentDetailView.as_view(),
                            name="student_detail"),
-                       url('^update/(?P<student_card_id>[0-9a-fA-F]{32})/$', StudentUpdateView.as_view(),
+                       url('^update/(?P<student_id>\d+)/$', StudentUpdateView.as_view(),
                            name="update_student"),
-                       url('^delete/(?P<student_card_id>[0-9a-fA-F]{32})/$', StudentDeleteView.as_view(),
+                       url('^delete/(?P<student_id>\d+)/$', StudentDeleteView.as_view(),
                            name="delete_student"),
 )

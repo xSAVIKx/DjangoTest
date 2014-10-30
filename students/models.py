@@ -19,7 +19,7 @@ class Student(models.Model):
         return "%s %s. ID=%s" % (str(self.first_name), str(self.surname), str(self.student_card_id))
 
     def get_absolute_url(self):
-        return reverse('student_detail', kwargs={'student_card_id': str(self.student_card_id)})
+        return reverse('student_detail', kwargs={'student_id': str(self.id)})
 
     class Meta:
         ordering = ['surname', 'first_name']

@@ -7,7 +7,7 @@
 
         <div class="table-responsive">
             <table class="table">
-                <caption>Groups information table</caption>
+                <caption>Group information table</caption>
                 <thead>
                 <tr>
                     <th>#</th>
@@ -16,6 +16,9 @@
                     <th>Surname</th>
                     <th>Birthday date</th>
                     <th>Student card ID</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +30,9 @@
                         <td>{{ student.surname }}</td>
                         <td>{{ student.birthday_date|date:"SHORT_DATE_FORMAT" }}</td>
                         <td>{{ student.student_card_id }}</td>
+                        <td><a class="btn-link" href="{{ student.get_absolute_url }}">info</a></td>
+                        <td><a class="btn-link" href="{% url 'update_student' student_id=student.id %}">update</a></td>
+                        <td><a class="btn-link" href="{% url 'delete_student' student_id=student.id %}">delete</a></td>
                     </tr>
                 {% empty %}
                     <tr>
