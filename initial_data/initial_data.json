@@ -13,10 +13,62 @@
     },
     {
         "fields": {
+            "first_name": "Test",
+            "middle_name": "Test",
+            "student_card_id": "e0b6d905c3f146e185008f0de390358b",
+            "birthday_date": "2014-10-30",
+            "group": 1,
+            "surname": "Test"
+        },
+        "model": "students.student",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "first_name": "Test2",
+            "middle_name": "",
+            "student_card_id": "79b4c3ff09d94c05b870df92ee505c6b",
+            "birthday_date": null,
+            "group": 2,
+            "surname": "Test2"
+        },
+        "model": "students.student",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "first_name": "Test3",
+            "middle_name": "",
+            "student_card_id": "13894943682b4623a3a99a03ca4f92c4",
+            "birthday_date": null,
+            "group": 3,
+            "surname": "Test3"
+        },
+        "model": "students.student",
+        "pk": 4
+    },
+    {
+        "fields": {
             "praepostor": 1,
             "title": "Test group"
         },
         "model": "students.group",
         "pk": 1
+    },
+    {
+        "fields": {
+            "praepostor": 2,
+            "title": "Test group 2"
+        },
+        "model": "students.group",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "praepostor": 4,
+            "title": "Test group 3"
+        },
+        "model": "students.group",
+        "pk": 3
     }
 ]
