@@ -7,7 +7,7 @@
 
         <div class="table-responsive">
             <table class="table">
-                <caption>Group information table</caption>
+                <caption>Group students table</caption>
                 <thead>
                 <tr>
                     <th>#</th>
@@ -32,8 +32,7 @@
                         <td>{{ student.student_card_id }}</td>
                         <td><a class="btn-link" href="{{ student.get_absolute_url }}">info</a></td>
                         <td><a class="btn-link" href="{% url 'edit_student' student_id=student.id %}">edit</a></td>
-                        <td><a class="btn-link" href="{% url 'delete_student' student_id=student.id %}"
-                               delete-link="true">delete</a>
+                        <td><a class="btn-link" href="{% url 'delete_student' student_id=student.id %}">delete</a>
                         </td>
                     </tr>
                 {% empty %}

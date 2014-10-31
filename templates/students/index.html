@@ -30,7 +30,7 @@
                             {% endif %}
                         </td>
                         <td><a class="btn-link" href="{% url 'edit_group' group_id=group.id %}">edit</a></td>
-                        <td><a class="btn-link" href="{% url 'delete_group' group_id=group.id %}" delete-link="true">delete</a>
+                        <td><a class="btn-link" href="{% url 'delete_group' group_id=group.id %}">delete</a>
                         </td>
                     </tr>
                 {% empty %}

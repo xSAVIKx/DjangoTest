@@ -1,22 +1,18 @@
 {% extends 'students/base.html' %}
 {% load staticfiles %}
-{% block title %}Create student{% endblock %}
+{% block title %}{{ title|capfirst }}{% endblock %}
 {% block extra_style %}
     <link rel="stylesheet" href="{% static 'students/css/jquery-ui.css' %}">
 {% endblock %}
 {% block container %}
     <div class="container">
-        {% if student.id %}
-            <h1>Edit Student</h1>
-        {% else %}
-            <h1>Create Student</h1>
-        {% endif %}
+        <h1>{{ title|capfirst }}</h1>
         {% include 'students/parts/form_snippet.html' with form=form form_action=action %}
     </div>
-{% endblock %}
+{% endblock container %}
 {% block extra_script %}
     <script src="{% static 'students/js/jquery-ui.js' %}"></script>
     <script>
         $('.datepicker').datepicker();
     </script>
-{% endblock %}
+{% endblock extra_script %}

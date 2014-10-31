@@ -50,6 +50,7 @@ class StudentCreateView(SuccessMessageMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(StudentCreateView, self).get_context_data(**kwargs)
         context['action'] = reverse('create_student')
+        context['title'] = "create student"
         return context
 
     def get_success_url(self):
@@ -63,7 +64,7 @@ class StudentCreateView(SuccessMessageMixin, CreateView):
         return response
 
 
-class StudentUpdateView(SuccessMessageMixin, UpdateView):
+class StudentEditView(SuccessMessageMixin, UpdateView):
     model = Student
     form_class = StudentForm
     template_name = 'students/student/create.html'
@@ -75,15 +76,16 @@ class StudentUpdateView(SuccessMessageMixin, UpdateView):
         return self.success_message % cleaned_data['surname']
 
     def get_context_data(self, **kwargs):
-        context = super(StudentUpdateView, self).get_context_data(**kwargs)
+        context = super(StudentEditView, self).get_context_data(**kwargs)
         context['action'] = reverse('edit_student', kwargs={self.pk_url_kwarg: str(self.object.id)})
+        context['title'] = "edit student #%d" % self.object.id
         return context
 
     def get_success_url(self):
         return reverse(self.success_url, kwargs={self.pk_url_kwarg: str(self.object.id)})
 
     def form_invalid(self, form):
-        response = super(StudentUpdateView, self).form_invalid(form)
+        response = super(StudentEditView, self).form_invalid(form)
         for error in form.errors:
             error_message = form.errors[error][0]
             messages.error(self.request, "%s %s" % (error.title(), error_message))
@@ -91,7 +93,26 @@ class StudentUpdateView(SuccessMessageMixin, UpdateView):
 
 
 class StudentDeleteView(DeleteView):
-    pass
+    model = Student
+    template_name = 'students/student/delete.html'
+    success_url = 'index'
+    success_message = "Student '%s' successfully deleted."
+    pk_url_kwarg = 'student_id'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % self.object.surname
+
+    def get_context_data(self, **kwargs):
+        context = super(StudentDeleteView, self).get_context_data(**kwargs)
+        context['action'] = reverse('delete_student', kwargs={self.pk_url_kwarg: str(self.object.id)})
+        context['title'] = "delete student #%d" % self.object.id
+        return context
+
+    def get_success_url(self):
+        success_message = self.get_success_message(None)
+        if success_message:
+            messages.success(self.request, success_message)
+        return reverse(self.success_url)
 
 
 class StudentDetailView(DetailView):
@@ -112,6 +133,12 @@ class GroupCreateView(SuccessMessageMixin, CreateView):
     def get_success_message(self, cleaned_data):
         return self.success_message % cleaned_data['title']
 
+    def get_context_data(self, **kwargs):
+        context = super(GroupCreateView, self).get_context_data(**kwargs)
+        context['action'] = reverse('create_group')
+        context['title'] = "create group"
+        return context
+
     def get_success_url(self):
         return reverse(self.success_url, kwargs={self.pk_url_kwarg: str(self.object.id)})
 
@@ -123,7 +150,7 @@ class GroupCreateView(SuccessMessageMixin, CreateView):
         return response
 
 
-class GroupUpdateView(UpdateView):
+class GroupEditView(SuccessMessageMixin, UpdateView):
     model = Group
     form_class = GroupForm
     template_name = 'students/group/create.html'
@@ -135,23 +162,43 @@ class GroupUpdateView(UpdateView):
         return self.success_message % cleaned_data['title']
 
     def get_context_data(self, **kwargs):
-        context = super(GroupUpdateView, self).get_context_data(**kwargs)
+        context = super(GroupEditView, self).get_context_data(**kwargs)
         context['action'] = reverse('edit_group', kwargs={self.pk_url_kwarg: str(self.object.id)})
+        context['title'] = "edit group #%d" % self.object.id
         return context
 
     def get_success_url(self):
         return reverse(self.success_url, kwargs={self.pk_url_kwarg: str(self.object.id)})
 
     def form_invalid(self, form):
-        response = super(GroupUpdateView, self).form_invalid(form)
+        response = super(GroupEditView, self).form_invalid(form)
         for error in form.errors:
             error_message = form.errors[error][0]
             messages.error(self.request, "%s %s" % (error.title(), error_message))
         return response
 
 
-class GroupDeleteView(DeleteView):
-    pass
+class GroupDeleteView(SuccessMessageMixin, DeleteView):
+    model = Group
+    template_name = 'students/group/delete.html'
+    success_url = 'index'
+    success_message = "Group '%s' successfully deleted."
+    pk_url_kwarg = 'group_id'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % self.object.title
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupDeleteView, self).get_context_data(**kwargs)
+        context['action'] = reverse('delete_group', kwargs={self.pk_url_kwarg: str(self.object.id)})
+        context['title'] = "delete group #%d" % self.object.id
+        return context
+
+    def get_success_url(self):
+        success_message = self.get_success_message(None)
+        if success_message:
+            messages.success(self.request, success_message)
+        return reverse(self.success_url)
 
 
 class GroupDetailView(DetailView):

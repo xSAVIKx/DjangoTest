@@ -11,7 +11,7 @@
             </button>
             <a class="navbar-brand" href="{% url 'index' %}">Students base</a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-collapse collapse navbar-right">
             <li {% ifactive "create_student" %}class="active"{% endifactive %}>
                 <a class="navbar-link" href="{% url 'create_student' %}">Create student</a>
             </li>

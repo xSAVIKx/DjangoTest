@@ -1,0 +1,23 @@
+{% extends 'students/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ title|capfirst }}{% endblock %}
+{% block container %}
+    <div class="container">
+        <h1>{{ title|capfirst }}</h1>
+
+        <p>Are you sure you want to delete the group "{{ group }}"?</p>
+
+        <form action="{{ action }}" method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                    <button type="submit" class="btn btn-block btn-danger">Yes, delete.</button>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+                    <a class="btn btn-block btn-success" href="{% url 'index' %}">No, cancel.</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

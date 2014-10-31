@@ -13,7 +13,7 @@ class Student(models.Model):
     birthday_date = models.DateField(blank=True, null=True)
 
     student_card_id = UUIDField(auto=True)
-    group = models.ForeignKey('Group', related_name='groups')
+    group = models.ForeignKey('Group', related_name='groups', null=True, on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return "%s %s. ID=%s" % (str(self.first_name), str(self.surname), str(self.student_card_id))
@@ -27,7 +27,8 @@ class Student(models.Model):
 
 class Group(models.Model):
     title = models.CharField(max_length=32, unique=True)
-    praepostor = models.ForeignKey('Student', related_name='praepostor', blank=True, null=True)
+    praepostor = models.ForeignKey('Student', related_name='praepostor', blank=True, null=True,
+                                   on_delete=models.SET_NULL)
 
     def __unicode__(self):
         return self.title
