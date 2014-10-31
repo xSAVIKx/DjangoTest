@@ -12,6 +12,8 @@
                     <th>Title</th>
                     <th>Group students amount</th>
                     <th>Praepostor</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,11 +22,20 @@
                         <td>{{ forloop.counter }}</td>
                         <td><a href="{{ group.get_absolute_url }}">{{ group.title|capfirst }}</a></td>
                         <td>{{ students_amount }}</td>
-                        <td>{{ group.praepostor }}</td>
+                        <td>
+                            {% if group.praepostor %}
+                                <a href="{{ group.praepostor.get_absolute_url }}">{{ group.praepostor }}</a>
+                            {% else %}
+                                There is no praepostor for this group
+                            {% endif %}
+                        </td>
+                        <td><a class="btn-link" href="{% url 'update_group' group_id=group.id %}">update</a></td>
+                        <td><a class="btn-link" href="{% url 'delete_group' group_id=group.id %}" delete-link="true">delete</a>
+                        </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="4">There are no groups yet.</td>
+                        <td colspan="6">There are no groups yet.</td>
                     </tr>
                 {% endfor %}
                 </tbody>

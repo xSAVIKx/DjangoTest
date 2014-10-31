@@ -7,7 +7,7 @@ from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 
-from students.forms import StudentForm
+from students.forms import StudentForm, GroupForm
 from students.models import Group, Student
 
 
@@ -73,8 +73,26 @@ class StudentDetailView(DetailView):
     pk_url_kwarg = 'student_id'
 
 
-class GroupCreateView(CreateView):
-    pass
+class GroupCreateView(SuccessMessageMixin, CreateView):
+    model = Group
+    form_class = GroupForm
+    template_name = 'students/group/create.html'
+    success_url = 'group_detail'
+    success_message = "Group %s successfully added."
+    pk_url_kwarg = 'group_id'
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message % cleaned_data['title']
+
+    def get_success_url(self):
+        return reverse(self.success_url, kwargs={self.pk_url_kwarg: str(self.object.id)})
+
+    def form_invalid(self, form):
+        response = super(GroupCreateView, self).form_invalid(form)
+        for error in form.errors:
+            error_message = form.errors[error][0]
+            messages.error(self.request, "%s %s" % (error.title(), error_message))
+        return response
 
 
 class GroupUpdateView(UpdateView):

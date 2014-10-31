@@ -1,0 +1,10 @@
+{% extends 'students/base.html' %}
+{% load staticfiles %}
+{% block title %}Create group{% endblock %}
+{% block container %}
+    <div class="container">
+        <h1>Create group</h1>
+        {% url 'create_group' as form_url %}
+        {% include 'students/parts/form_snippet.html' with form=form form_action=form_url %}
+    </div>
+{% endblock %}
