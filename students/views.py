@@ -1,16 +1,13 @@
 # Create your views here.
 from django.contrib import messages
-
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
-
 from django.views.generic import CreateView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 
 from students.forms import StudentForm
-
 from students.models import Group, Student
 
 
@@ -30,6 +27,13 @@ class IndexView(TemplateView):
             group_information_tuple = (group, group_students_amount)
             groups_information_list.append(group_information_tuple)
         return groups_information_list
+
+
+class HomeRedirectView(RedirectView):
+    url = 'index'
+
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse(self.url)
 
 
 class StudentCreateView(SuccessMessageMixin, CreateView):

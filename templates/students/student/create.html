@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block title %}Index page{% endblock %}
 {% block extra_style %}
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="{% static 'students/css/jquery-ui.css' %}">
 {% endblock %}
 {% block container %}
     <div class="container">
@@ -12,7 +12,7 @@
     </div>
 {% endblock %}
 {% block extra_script %}
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="{% static 'students/js/jquery-ui.js' %}"></script>
     <script>
         $('.datepicker').datepicker();
     </script>

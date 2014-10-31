@@ -8,6 +8,7 @@ __author__ = 'iurii'
 
 
 class StudentForm(forms.ModelForm):
+    initial=''
     class Meta:
         model = Student
         exclude = ['student_card_id']
