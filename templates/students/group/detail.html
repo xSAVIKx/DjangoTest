@@ -31,7 +31,7 @@
                         <td>{{ student.birthday_date|date:"SHORT_DATE_FORMAT" }}</td>
                         <td>{{ student.student_card_id }}</td>
                         <td><a class="btn-link" href="{{ student.get_absolute_url }}">info</a></td>
-                        <td><a class="btn-link" href="{% url 'update_student' student_id=student.id %}">update</a></td>
+                        <td><a class="btn-link" href="{% url 'edit_student' student_id=student.id %}">edit</a></td>
                         <td><a class="btn-link" href="{% url 'delete_student' student_id=student.id %}"
                                delete-link="true">delete</a>
                         </td>
