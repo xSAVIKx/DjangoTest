@@ -1,9 +1,6 @@
 import datetime
 
 from django.db import connection
-from django.http.response import HttpResponse
-
-HttpResponse
 
 __author__ = 'iurii'
 
@@ -11,7 +8,6 @@ __author__ = 'iurii'
 class DatabasePerformanceMiddleware(object):
     def __init__(self):
         self.start_time = None
-
 
     def process_request(self, request):
         self.start_time = datetime.datetime.utcnow()
