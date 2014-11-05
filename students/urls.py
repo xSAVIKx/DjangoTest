@@ -8,4 +8,5 @@ urlpatterns = patterns('',
                        url(r'^$', HomeRedirectView.as_view(), name='index_redirect'),
                        url(r'^group/', include('students.url.group')),
                        url(r'^student/', include('students.url.student')),
+                       url(r'^auth/', include('students.auth.urls')),
 )
