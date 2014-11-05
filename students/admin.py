@@ -1,6 +1,6 @@
 from django.contrib import admin
 # Register your models here.
-from students.models import Student, Group
+from students.models import Student, Group, SignalEvent
 
 
 class StudentAdmin(admin.ModelAdmin):
@@ -21,5 +21,12 @@ class GroupAdmin(admin.ModelAdmin):
     inlines = [StudentInline]
 
 
+class SignalEventAdmin(admin.ModelAdmin):
+    fields = ['sender', 'event', 'additional_info', 'time_stamp']
+    list_display = ['sender', 'event', 'time_stamp']
+    readonly_fields = ['time_stamp']
+
+
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Group, GroupAdmin)
+admin.site.register(SignalEvent, SignalEventAdmin)
