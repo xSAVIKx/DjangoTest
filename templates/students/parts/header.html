@@ -12,12 +12,15 @@
             <a class="navbar-brand" href="{% url 'index' %}">Students base</a>
         </div>
         <ul class="nav navbar-nav navbar-collapse collapse navbar-right">
-            <li {% ifactive "create_student" %}class="active"{% endifactive %}>
-                <a class="navbar-link" href="{% url 'create_student' %}">Create student</a>
-            </li>
-            <li {% ifactive "create_group" %}class="active"{% endifactive %}>
-                <a class="navbar-link" href="{% url 'create_group' %}">Create group</a>
-            </li>
+            {% if user.is_authenticated %}
+                <li {% ifactive "create_student" %}class="active"{% endifactive %}>
+                    <a class="navbar-link" href="{% url 'create_student' %}">Create student</a>
+                </li>
+                <li {% ifactive "create_group" %}class="active"{% endifactive %}>
+                    <a class="navbar-link" href="{% url 'create_group' %}">Create group</a>
+                </li>
+                <li><a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
         </ul>
         {#        <div class="navbar-collapse collapse">#}
         {#            <a class="navbar-link navbar-right" href="{% url 'create_student' %}">Create student</a>#}
