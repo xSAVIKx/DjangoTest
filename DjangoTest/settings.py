@@ -109,3 +109,11 @@ MESSAGE_TAGS = {messages.DEBUG: 'debug',
                 messages.SUCCESS: 'alert-success',
                 messages.WARNING: 'alert-warning',
                 messages.ERROR: 'alert-danger', }
+
+AUTHENTICATION_BACKENDS = (
+    'students.auth.user_backends.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend'
+)
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'index'
